@@ -1,0 +1,312 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+nav {
+    float: right;
+    margin-top: 10px;
+    margin-right: 4%;
+}
+
+nav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-shadow: 2px 2px 2px #000000;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    transition: 0.6s ease;
+    font-family: 'Prompt', sans-serif;
+}
+
+/* Alapstílusok */
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333;
+    background-color: #CCFBEA;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.valami {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333;
+    background-image: url("../img/zold.jpg");
+    background-color: rgba(255, 255, 255, 0.4);
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.hehe {
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+    flex-direction: row;
+    background-image: url("../img/zold.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+    font-family: 'Prompt', sans-serif;
+}
+
+.container {
+    position: relative;
+    height: 100%;
+    width: calc(100% - 40px);
+}
+
+header {
+    padding: 20px;
+}
+
+.header-content {
+    position: static;
+    left: 25%;
+    top: 32%;
+    width: auto;
+
+}
+
+.header-title {
+    font-size: 150px;
+    margin: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #ffffff;
+    text-shadow: 2px 2px 2px #000000;
+    text-align: left;
+    font-family: 'Megrim', sans-serif;
+    margin-left: 23%;
+    font-weight: bold;
+}
+
+.header-title1 {
+    font-size: 150px;
+    margin: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #ffffff;
+    text-shadow: 2px 2px 2px #000000;
+    text-align: right;
+    font-family: 'Megrim', sans-serif;
+    margin-right: 25%;
+    font-weight: bold;
+}
+
+.header-mono {
+    letter-spacing: 5px;
+    font-weight: 500;
+    font-size: 30px;
+    margin-top: 20px;
+    color: #000000;
+    text-shadow: 1px 1px 1px #000000;
+    font-family: 'Livvic', sans-serif;
+    margin-left: 13%;
+}
+
+@media screen and (max-width: 1540px) {
+    header .header-content .header-title{
+        font-size: 130px;
+    }
+    header .header-content .header-mono{
+        font-size: 23px;
+    }
+    header .header-content .header-title1{
+        font-size: 130px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    header .header-content .header-title{
+        font-size: 70px;
+    }
+    header .header-content .header-mono{
+        font-size: 23px;
+    }
+    header .header-content .header-title1{
+        font-size: 70px;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    header .header-content .header-title{
+        font-size: 46px;
+    }
+    header .header-content .header-title1{
+        font-size: 46px;
+    }
+    header .header-content .header-mono{
+        font-size: 20px;
+    }
+}
+
+.button-21 {
+    align-items: center;
+    appearance: none;
+    background-color: #3EB2FD;
+    background-image: linear-gradient(1deg, #4F58FD, #149BF3 99%);
+    background-size: calc(100% + 20px) calc(100% + 20px);
+    border-radius: 100px;
+    border-width: 0;
+    box-shadow: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: CircularStd,sans-serif;
+    font-size: 1rem;
+    height: auto;
+    justify-content: center;
+    line-height: 1.5;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color .2s,background-position .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: top;
+    white-space: nowrap;
+
+    width: 160px;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 auto;
+    margin-left: 20%;
+}
+
+.button-21:active,
+.button-21:focus {
+    outline: none;
+}
+
+.button-21:hover {
+    background-position: -20px -20px;
+}
+
+.button-21:focus:not(:active) {
+    box-shadow: rgba(40, 170, 255, 0.25) 0 0 0 .125em;
+}
+
+
+
+
+
+nav ul {
+    display: flex;
+    gap: 1.5em;
+    list-style: none;
+    flex-wrap: wrap;
+    /* float: left; */
+    /* align-items: center; */
+}
+nav li {
+    
+    /* margin: 0 10px; */
+}
+
+nav a {
+    text-decoration: none;
+    /*color: #272E74; nem kell*/
+
+}
+
+li a{
+    font-family: 'Prompt', sans-serif;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: #24941d;
+    border-radius: 15px;
+    width: 100%;
+    font-weight: bold;
+}
+
+
+.search_bar {
+    float: right;
+    padding-top: 20px;
+    padding-right: 50px;
+}
+
+.search_bar input[type=text] {
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 14px;
+    border: none;
+    border-radius: 15px;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.search_bar button {
+    float: right;
+    padding: 6px 10px;
+    margin-top: 8px;
+    margin-right: 16px;
+    background: #ddd;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 15px;
+    margin-left: 5px;
+}
+
+/* @media (max-width:1200px) {
+    ul.lista1 {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 130px;
+    }
+
+    .search_bar {
+        text-align: center;
+    }
+
+    .search_bar.fa-search {
+        text-align: center;
+    }
+} */
+
+.selected-pet{
+    display: -webkit-inline-box;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1em;
+    padding: .5em;
+    background-color: #e5dbd0a2;
+    border-radius: 10em;
+    justify-content: center;
+    align-items: center;
+}
+.selected-pet img{
+    width: 4em;
+    height: 4em;
+    object-fit: cover;
+    border-radius: 100%;
+    image-rendering: optimizeSpeed;
+}
+.selected-pet .pet-name{
+    display: flex;
+    font-weight: 500;
+    align-items: center;
+}
+.selected-pet form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
