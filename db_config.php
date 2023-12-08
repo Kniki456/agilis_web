@@ -1,10 +1,10 @@
 <?php
 
-$con = mysqli_connect("localhost", "root", "", "dog_walking") or die(mysqli_error($con));
+$con = mysqli_connect("localhost", "root", "", "agilis") or die(mysqli_error($con));
 
 // pdo
 $host = '127.0.0.1';
-$db   = "dog_walking";
+$db   = "agilis";
 $user = "root";
 $pass = "";
 $port = "3306";

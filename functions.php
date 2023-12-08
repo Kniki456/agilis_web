@@ -65,145 +65,27 @@ function randomVerificationKey()
     return $randomString;
 }
 
-//Register
-if (isset($_POST["register-submit"])) {
-    if (!empty($_POST["register-email"]) || !empty($_POST["register-password"]) || !empty($_POST["register-password-repeat"])) {
-        // Check if email already exists
-        $stmt = mysqli_prepare($con, "SELECT * FROM user WHERE email = ?");
-        mysqli_stmt_bind_param($stmt, 's', $_POST['register-email']);
-        mysqli_stmt_execute($stmt);
-        $rows = mysqli_stmt_get_result($stmt);
-        mysqli_stmt_close($stmt);
-        if (mysqli_num_rows($rows) > 0) {
-            if (!isset($_SESSION)) {
-                session_start();
-            }
-            $_SESSION['response'] = "User already registered!";
-            session_commit();
-            // header("Location:" . $_SERVER['HTTP_REFERER']);
-        } else {
-            // salt
-            $options = [
-                'cost' => 11
-            ];
-            $register_password = $_POST['register-password'];
-            // BCRYPT
-            $hash = password_hash($register_password, PASSWORD_BCRYPT, $options);
-            // Array for the nem user
-            $new_user = [
-                $email = $_POST['register-email'],
-                $hash,
-                $verification_key = randomVerificationKey()
-            ];
-            // Insert query with POD params
-            $query = "INSERT INTO user (email,password,token) VALUES (?,?,?)";
-            $pdo->prepare($query)->execute($new_user);
-            $pdo->beginTransaction();
-            if ($pdo->commit() > 0) {
-                sendVerificationMail($_POST['register-email'], $verification_key);
-                if (!isset($_SESSION)) {
-                    session_start();
-                }
-                $_SESSION['response'] = "Sikeres regisztráció. Emailbe küldtünk hitelesítőt!";
-                session_commit();
-                // header("Location:" . $_SERVER['HTTP_REFERER']);
-            } //Error lehet?
-        }
-    } else {
-        if (!isset($_SESSION)) {
-            session_start();
-        }
-        $_SESSION['response'] = "Üres mezők";
-        session_commit();
-        // header("Location:" . $_SERVER['HTTP_REFERER']);
-    }
-}
-// Verificiation status update
-if (isset($_GET['verification_key'])) {
-    $stmt = mysqli_prepare($con, "SELECT * FROM user WHERE token = ?");
-    mysqli_stmt_bind_param($stmt, 's', $_GET['verification_key']);
-    mysqli_stmt_execute($stmt);
-    $rows = mysqli_stmt_get_result($stmt);
-    mysqli_stmt_close($stmt);
-    if (mysqli_num_rows($rows) > 0) {
-        $row = mysqli_fetch_array($rows);
-        $query = "UPDATE user SET status = 1 WHERE token = ?";
-        $verification = [
-            $verification_key = $_GET['verification_key']
-        ];
-        $pdo->prepare($query)->execute($verification);
-        $pdo->beginTransaction();
-        if ($pdo->commit() > 0) {
-            if (!isset($_SESSION)) {
-                session_start();
-            }
-            $_SESSION['email'] = $row['email'];
-            $_SESSION['user_id'] = $row['user_id'];
-            $_SESSION['response-text'] = "Sikeres verifikáció";
-            session_commit();
-            header("Location:profile.php");
-        } //Error lehet?
-    } else {
-        if (!isset($_SESSION)) {
-            session_start();
-        }
-        $_SESSION['response'] = "Hibás token";
-        session_commit();
-        header("Location:index.php");
-    }
-}
 // Login
-if (isset($_POST["login-submit"])) {
-    if (!isset($_SESSION)) {
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+
+    // Ellenőrzés a SQL-injekció ellen
+    $email = mysqli_real_escape_string($con, $email);
+
+    // Bejelentkezés ellenőrzése
+    $sql = "SELECT * FROM admin WHERE email = '$email' AND password = '$password'";
+    $result = $con->query($sql);
+
+    if ($result->num_rows > 0) {
+        // Sikeres bejelentkezés
         session_start();
-    }
-    if (!is_banned($_POST['login-email'])) {
-        if (is_verified($_POST['login-email'])) {
-            $stmt = mysqli_prepare($con, "SELECT * FROM user WHERE email = ? AND status = 1");
-            mysqli_stmt_bind_param($stmt, 's', $_POST['login-email']);
-            mysqli_stmt_execute($stmt);
-            $rows = mysqli_stmt_get_result($stmt);
-            mysqli_stmt_close($stmt);
-            if (mysqli_num_rows($rows) > 0) {
-                $row = mysqli_fetch_assoc($rows);
-                if (password_verify($_POST['login-password'], $row["password"])) {
-                    $_SESSION['email'] = $_POST['login-email'];
-                    $_SESSION['user_id'] = $row['user_id'];
-                    //                    $_SESSION['response'] = true;
-//                    $_SESSION['response-text'] = "succesfully-logined";
-                    session_commit();
-                    header("Location: admin.php");
-                } else {
-                    if (!isset($_SESSION)) {
-                        session_start();
-                    }
-                    $_SESSION['response'] = "Hibás kombináció!";
-                    session_commit();
-                    // header("Location:" . $_SERVER['HTTP_REFERER']);
-                }
-            } else {
-                if (!isset($_SESSION)) {
-                    session_start();
-                }
-                $_SESSION['response'] = "Nincs ilyen felhasználó! Vagy nincs még verifikálva!";
-                session_commit();
-                // header("Location:" . $_SERVER['HTTP_REFERER']);
-            }
-        } else {
-            if (!isset($_SESSION)) {
-                session_start();
-            }
-            $_SESSION['response'] = "Nincs ilyen felhasználó! Vagy nincs még verifikálva!";
-            session_commit();
-            // header("Location:" . $_SERVER['HTTP_REFERER']);
-        }
+        $_SESSION["admin_email"] = $email; // Mentsd el az e-mail címet a session-ben
+        header("Location: admin.php");
+        exit();
     } else {
-        if (!isset($_SESSION)) {
-            session_start();
-        }
-        $_SESSION['response'] = "Felfüggesztett felhasználó!";
-        session_commit();
-        //        session_commit();
+        echo "Hibás e-mail cím vagy jelszó!";
     }
 }
 // Admin ? 1 : 0
@@ -249,25 +131,11 @@ function is_veterinarian($id)
         false;
     }
 }
-function is_verified_veterinarian($id)
-{
-    include('db_config.php');
-    $stmt = mysqli_prepare($con, "SELECT * FROM veterinarians WHERE user_id = ? and status = 1");
-    mysqli_stmt_bind_param($stmt, 's', $id);
-    mysqli_stmt_execute($stmt);
-    $rows = mysqli_stmt_get_result($stmt);
-    mysqli_stmt_close($stmt);
-    if (mysqli_num_rows($rows) > 0) {
-        return true;
-    } else {
-        false;
-    }
-}
 // Verified ? 1 : 0
 function is_verified($email)
 {
     include('db_config.php');
-    $stmt = mysqli_prepare($con, "SELECT * FROM user WHERE email = ? AND status = 1");
+    $stmt = mysqli_prepare($con, "SELECT * FROM admin WHERE email = ?");
     mysqli_stmt_bind_param($stmt, 's', $email);
     mysqli_stmt_execute($stmt);
     $rows = mysqli_stmt_get_result($stmt);
@@ -278,45 +146,7 @@ function is_verified($email)
         false;
 }
 
-function getStatus($id)
-{
-    include('db_config.php');
-    $stmt = mysqli_prepare($con, "SELECT * FROM user WHERE user_id = ? AND admin = 1");
-    mysqli_stmt_bind_param($stmt, 's', $id);
-    mysqli_stmt_execute($stmt);
-    $rows = mysqli_stmt_get_result($stmt);
-    mysqli_stmt_close($stmt);
-    if (mysqli_num_rows($rows) > 0) {
-        return "admin";
-    }
-    $stmt = mysqli_prepare($con, "SELECT * FROM user WHERE status = 0 and user_id = ?");
-    mysqli_stmt_bind_param($stmt, 's', $id);
-    mysqli_stmt_execute($stmt);
-    $rows = mysqli_stmt_get_result($stmt);
-    mysqli_stmt_close($stmt);
-    if (mysqli_num_rows($rows) > 0) {
-        return "unverificated";
-    }
-    $stmt = mysqli_prepare($con, "SELECT * FROM user WHERE status = 2 and user_id = ?");
-    mysqli_stmt_bind_param($stmt, 's', $id);
-    mysqli_stmt_execute($stmt);
-    $rows = mysqli_stmt_get_result($stmt);
-    mysqli_stmt_close($stmt);
-    if (mysqli_num_rows($rows) > 0) {
-        return "banned";
-    }
-    $stmt = mysqli_prepare($con, "SELECT * FROM veterinarians WHERE user_id = ?");
-    mysqli_stmt_bind_param($stmt, 's', $id);
-    mysqli_stmt_execute($stmt);
-    $rows = mysqli_stmt_get_result($stmt);
-    mysqli_stmt_close($stmt);
-    if (mysqli_num_rows($rows) > 0) {
-        return "veterinarian";
-    } else {
-        return "user";
-    }
 
-}
 
 function is_yourPet($user_id, $pet_id)
 {

@@ -23,30 +23,28 @@ if (!isset($_SESSION)) {
 </head>
 
 <body class="valami">
+<?php response(); ?>
     <img class="logo" src="img/logo.jpg">
     <h1 class="cim2">Rapid Math</h1>
+<?php
+// ...
+// Hibaüzenet megjelenítése
+if (isset($error_message)) {
+    echo "<p style='color: red;'>$error_message</p>";
+}
+?>
     <section>
         <div class="form-box">
             <div class="form-box1"
             <div class="form-value">
-                <form action="" method="post">
-                    <h2 class="reg">Log in</h2>
-                    <div class="inputbox2">
-                        <ion-icon name="mail-outline"></ion-icon>
-                        <input type="text" id="login-email" name="login-email" required class="error">
-                        <label for="">E-mail</label>
-                    </div>
-                    <div class="inputbox2">
-                        <ion-icon name="lock-closed-outline"></ion-icon>
-                        <input type="password" id="login-password" name="login-password" required>
-                        <label for="">Passworld</label>
-                    </div>
-
-                    <button name="login-submit" id="login-button">Log in</button>
-
+                <form method="post" action="">
+                    <label for="email">E-mail:</label>
+                    <input type="text" name="email" required><br>
+                    <label for="password">Jelszó:</label>
+                    <input type="password" name="password" required><br>
+                    <input type="submit" value="Bejelentkezés">
                 </form>
             </div>
-        </div>
         </div>
     </section>
 
