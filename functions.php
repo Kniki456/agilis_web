@@ -66,7 +66,7 @@ function randomVerificationKey()
 }
 
 // Login
-
+$error_message = ""; // Inicializáljuk az error_message változót
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
     $password = $_POST["password"];
@@ -85,38 +85,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: admin.php");
         exit();
     } else {
-        echo "Hibás e-mail cím vagy jelszó!";
+        $error_message = "Hibás e-mail cím vagy jelszó!";
     }
 }
-// Admin ? 1 : 0
-function is_admin($email)
-{
-    include('db_config.php');
-    $stmt = mysqli_prepare($con, "SELECT * FROM user WHERE email = ? AND admin = 1");
-    mysqli_stmt_bind_param($stmt, 's', $email);
-    mysqli_stmt_execute($stmt);
-    $rows = mysqli_stmt_get_result($stmt);
-    mysqli_stmt_close($stmt);
-    if (mysqli_num_rows($rows) > 0) {
-        return true;
-    } else
-        false;
-}
-// Banned ? 1 : 0
-function is_banned($email)
-{
-    include('db_config.php');
-    $stmt = mysqli_prepare($con, "SELECT * FROM user WHERE email = ? AND status = 2");
-    mysqli_stmt_bind_param($stmt, 's', $email);
-    mysqli_stmt_execute($stmt);
-    $rows = mysqli_stmt_get_result($stmt);
-    mysqli_stmt_close($stmt);
-    if (mysqli_num_rows($rows) > 0) {
-        return true;
-    } else {
-        false;
-    }
-}
+
 function is_veterinarian($id)
 {
     include('db_config.php');
@@ -675,27 +647,27 @@ if (isset($_POST["pet-delete"])) {
 function getPetsRow()
 {
     include('db_config.php');
-    $stmt = mysqli_prepare($con, "SELECT * FROM pets");
+    $stmt = mysqli_prepare($con, "SELECT * FROM highscores ORDER BY Score DESC");
 
     mysqli_stmt_execute($stmt);
     $rows = mysqli_stmt_get_result($stmt);
     mysqli_stmt_close($stmt);
+
     if (mysqli_num_rows($rows) > 0) {
         while ($row = mysqli_fetch_array($rows)) {
             echo '
             <li class="item">
-                <img class="rows-img" src="' . $row['photo'] . '">
-                <span class="name">' . $row['pet_name'] . '</span>
+                <span class="name">' . $row['Name'] . '</span>
+                <span class="score">' . $row['Score'] . '</span>
                 <div class="muveletek">
                     <form method="post"> 
-                        <input type="hidden" name="pet-id" value="' . $row['pet_id'] . '">
+                        <input type="hidden" name="pet-id" value="' . $row['user_id'] . '">
                         <button type="submit" name="pet-delete" class="btn btn-danger">Delete</button>
                     </form>
                     <form method="post" action="pet_modify.php">
-                        <input type="hidden" name="pet-id" value="' . $row['pet_id'] . '">
+                        <input type="hidden" name="pet-id" value="' . $row['user_id'] . '">
                         <button type="submit" class="btn btn-warning">Edit</button>
                     </form>
-                    
                 </div>
             </li>';
         }

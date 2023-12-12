@@ -5,6 +5,11 @@
     font-family: 'poppins',sans-serif;
 }
 
+.error-message  {
+    color: red;
+    margin-top: 10px;
+}
+
 section{
     display: flex;
     justify-content: center;
