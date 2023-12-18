@@ -15,7 +15,6 @@ include "functions.php";
     <link rel="stylesheet" type="text/css" href="css/css.css">
     <link rel="stylesheet" type="text/css" href="css/nav.css">
     <link rel="stylesheet" href="css/admin.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Kodchasan&family=Livvic&family=Megrim&display=swap" rel="stylesheet">
 </head>
 
@@ -32,23 +31,14 @@ include "functions.php";
     <main class="admin">
         <div class="section section-nav">
             <h1 class="highscores">Highscores</h1>
-            <input type="text" class="search" onkeyup="search();" placeholder="Search...">
+            <input class="search" id="searchInput" placeholder="Search....">
+            <button class="vmi" onclick="searchByName()">Search</button>
         </div>
-        <!-- Pets -->
-        <div class="section operation active" data-value="open-pets-container" id="open-pets-container">
 
+        <div class="section operation active" data-value="open-pets-container" id="open-pets-container">
             <ul class="rows">
                 <?php
-                getPetsRow();
-                ?>
-            </ul>
-        </div>
-        <!-- users  -->
-        <div class="section operation" data-value="open-users-container" id="open-users-container">
-            <h3>Felhasználók</h3>
-            <ul class="rows">
-                <?php
-                getUsersRow();
+                getVmiRow();
                 ?>
             </ul>
         </div>
@@ -56,26 +46,23 @@ include "functions.php";
     <footer>
         <h3 class="btm">Copyright 2023 Rapid Math. All rights reserved. </h3>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
 </body>
 
 </html>
+<script>
+    function searchByName() {
+        var searchValue = document.getElementById('searchInput').value.toUpperCase();
+        var items = document.querySelectorAll('.name');
 
+        items.forEach(function(item) {
+            var itemName = item.textContent.toUpperCase();
+            var li = item.parentElement;
 
-<script>function search() {
-    var input = document.querySelector(".search");
-    var items = document.querySelectorAll(".active .rows .item");
-
-    filter = input.value.toLowerCase();
-    for (i = 0; i < items.length; i++) {
-    title = items[i].querySelector(".name");
-    if (title.innerText.toLowerCase().indexOf(filter) > -1) {
-    items[i].style.display = "";
-        } else {
-        items[i].style.display = "none";
-        }
+            if (itemName.indexOf(searchValue) > -1) {
+                li.style.display = '';
+            } else {
+                li.style.display = 'none';
+            }
+        });
     }
-}
 </script>

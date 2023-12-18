@@ -674,6 +674,25 @@ function getPetsRow()
     }
 }
 
+function getVmiRow()
+{
+    include('db_config.php');
+    $stmt = mysqli_prepare($con, "SELECT * FROM highscores");
+
+    mysqli_stmt_execute($stmt);
+    $rows = mysqli_stmt_get_result($stmt);
+    mysqli_stmt_close($stmt);
+    if (mysqli_num_rows($rows) > 0) {
+        while ($row = mysqli_fetch_array($rows)) {
+            echo '
+            <li class="item">
+                <span class="name">' . $row['user_name'] . '</span>
+            </li>';
+        }
+    }
+}
+
+
 function getUsersRow()
 {
     include('db_config.php');

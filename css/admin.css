@@ -109,6 +109,11 @@ input, textarea,select{
     margin: auto;
 }
 
+vmi{
+    width: 33%;
+    margin: auto;
+}
+
 footer{
     position: relative;
     width: 100%;

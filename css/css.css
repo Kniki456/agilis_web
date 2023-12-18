@@ -11,11 +11,6 @@ input, textarea,select{
     border-color: #d8874a;
 }
 
-.search{
-    width: 43%;
-    margin-left: 28%;
-}
-
 input[type="file"]{
     max-width: 17em;
 }
