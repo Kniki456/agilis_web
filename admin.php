@@ -31,14 +31,14 @@ include "functions.php";
     <main class="admin">
         <div class="section section-nav">
             <h1 class="highscores">Highscores</h1>
-            <input class="search" id="searchInput" placeholder="Search....">
-            <button class="vmi" onclick="searchByName()">Search</button>
+            <input class="vmi" id="searchInput" placeholder="Search....">
+            <button class="search" onclick="searchByName()">Search</button>
         </div>
 
         <div class="section operation active" data-value="open-pets-container" id="open-pets-container">
-            <ul class="rows">
+            <ul class="rows2">
                 <?php
-                getVmiRow();
+                getPetsRow();
                 ?>
             </ul>
         </div>

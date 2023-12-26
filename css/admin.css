@@ -104,14 +104,15 @@ input, textarea,select{
     font-family: 'Livlic', sans-serif;
 }
 
-.search{
+.vmi{
     width: 43%;
     margin: auto;
 }
 
-vmi{
+.search{
     width: 33%;
     margin: auto;
+    background-color: #2d5270;
 }
 
 footer{
@@ -198,7 +199,15 @@ a{
 }
 
 .rows{
-    
+    width: 100%;
+    border-radius: 1em;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.rows2{
     width: 100%;
     border-radius: 1em;
     padding: 1em;
@@ -207,6 +216,18 @@ a{
     gap: 1em;
 }
 .rows li{
+    background-color: rgba(245, 227, 222, 0.85);
+    border-radius: 1em;
+    padding: 1em;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1em;
+    flex-wrap: wrap;
+    /* flex-direction: column; */
+}
+
+.rows2 li{
     background-color: rgba(245, 227, 222, 0.85);
     border-radius: 1em;
     padding: 1em;

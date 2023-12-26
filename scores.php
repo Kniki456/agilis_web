@@ -43,41 +43,8 @@ include "functions.php";
 
         <ul class="rows">
             <?php
-            getPetsRow();
+            getVmiRow();
             ?>
-        </ul>
-    </div>
-    <!-- users  -->
-    <div class="section operation" data-value="open-users-container" id="open-users-container">
-        <h3>Felhasználók</h3>
-        <ul class="rows">
-            <?php
-            getUsersRow();
-            ?>
-        </ul>
-    </div>
-    <!-- walkers  -->
-    <div class="section operation" data-value="open-walkers-container" id="open-walkers-container">
-        <h3>Sétáltatók</h3>
-        <ul class="rows">
-            <?php
-            getWalkerRow();
-            ?>
-        </ul>
-    </div>
-    <!-- Termins -->
-    <div class="section operation" data-value="open-termins-container" id="open-termins-container">
-        <h3>Időpontok</h3>
-        <form action="" method="post" id="calendar">
-            <input type="date" name="selected-date" value="<?php if (isset($_POST['selected-date'])) {
-                echo $date_now = $_POST['selected-date'];
-            } else {
-                echo $date_now = date("Y-m-d");
-            } ?>">
-            <button class="service-li-button" type="submit" name="setAdminCalendar">Ez a dátum</button>
-        </form>
-        <ul class="rows">
-            <?php getTerminsAdmin($date_now); ?>
         </ul>
     </div>
 </main>

@@ -55,9 +55,11 @@ if (!isset($_SESSION)) {
         <br>
         <div class="section1">
             <p class="description">With this game you can find out how fast you can perform various calculations.<br>
-                The game consists of xy levels, each level has xy number of tasks that must be completed in xy time. If you solve the task well, you get a point.<br><br>
+                The game consists of 30 levels, each level has 8 number of tasks that must be completed in 30 seconds or 1 minutes. If you solve the task well, you get 20 point.<br><br>
 
-                You can see how good you are compared to the others in the highscore list.</p>
+                You can see how good you are compared to the others in the highscore list.<br><br>
+                Solve addition, subtraction, division, and multiplication questions.<br><br>
+                Earn more bonus points the faster you answer.</p>
         </div>
     </div>
 
@@ -79,7 +81,7 @@ if (!isset($_SESSION)) {
                 </p>
                 <p class="mb-10 text-lg">
                     <span class="block mb-2">Tel: <a>010-020-0340</a></span>
-                    <span class="block">Email: <a>rapidmath@gmail.com</a></span>
+                    <span class="block">Email: <a>rapidmath621@gmail.com</a></span>
                 </p>
             </div>
             <div class="flex-1 rounded-xl p-12 pb-14 m-5 bg-black bg-opacity-50 tm-item-container">
