@@ -138,15 +138,19 @@ header {
     }
 }
 
-@media screen and (max-width: 380px) {
+@media screen and (max-width: 440px) {
     header .header-content .header-title{
-        font-size: 46px;
+        font-size: 48px;
+        margin-left: 10%;
     }
     header .header-content .header-title1{
-        font-size: 46px;
+        font-size: 48px;
+        margin-right: 10%;
     }
     header .header-content .header-mono{
-        font-size: 20px;
+        font-size: 16px;
+        margin-left: 5%;
+
     }
 }
 

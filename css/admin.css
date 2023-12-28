@@ -40,6 +40,11 @@
         max-width: 22%;
     }
 }
+@media screen and (max-width: 500px) {
+    .logo{
+        max-width: 42%;
+    }
+}
 
 .highscores{
     font-family: 'Livvic', sans-serif;
@@ -89,6 +94,15 @@ main { /* css-bol ne felejtsd el kitorolni*/
     transform: translateY(20%);
 }
 
+@media only screen and (max-width: 1500px) {
+    .section1{
+        transform: unset;
+    }
+    .description{
+        font-size: 19px;
+    }
+}
+
 input, textarea,select{
     background-color: rgba(0, 0, 0, 0.6);
     border-radius: .3em;
@@ -107,12 +121,26 @@ input, textarea,select{
 .vmi{
     width: 43%;
     margin: auto;
+    margin-bottom: 2%;
+    margin-top: 2%;
 }
 
 .search{
     width: 33%;
     margin: auto;
     background-color: #2d5270;
+}
+
+@media screen and (max-width: 440px) {
+    .search {
+        width: 63%;
+    }
+    .vmi {
+        width: 73%;
+    }
+    .cim{
+        font-size: 40px;
+    }
 }
 
 footer{
@@ -149,6 +177,19 @@ footer{
     display:inline-block;
     height:50px;
     box-shadow: 0 25px 0 -23px #000000;
+}
+
+@media screen and (max-width: 730px) {
+    .about{
+        font-size:30px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .about{
+        font-size:20px;
+        height: unset;
+    }
 }
 
 .custom-shape-divider-top-1701094399 {

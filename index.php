@@ -59,7 +59,7 @@ if (!isset($_SESSION)) {
 
                 You can see how good you are compared to the others in the highscore list.<br><br>
                 Solve addition, subtraction, division, and multiplication questions.<br><br>
-                Earn more bonus points the faster you answer.</p>
+                Earn more bonus points the faster you answer.<br></p>
         </div>
     </div>
 
