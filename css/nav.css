@@ -46,10 +46,7 @@ body {
 }
 
 .hehe {
-    justify-content: center;
     height: 100vh;
-    align-items: center;
-    flex-direction: row;
     background-image: url("../img/zold.jpg");
     background-size: cover;
     background-position: center;
@@ -63,10 +60,6 @@ body {
     position: relative;
     height: 100%;
     width: calc(100% - 40px);
-}
-
-header {
-    padding: 20px;
 }
 
 .header-content {
@@ -182,18 +175,10 @@ header .header-content .header-mono{
     box-shadow: rgba(40, 170, 255, 0.25) 0 0 0 .125em;
 }
 
-
-
-
-
 nav ul {
     gap: 1.5em;
     list-style: none;
     flex-wrap: wrap;
-}
-
-nav a {
-    text-decoration: none;
 }
 
 li a{
