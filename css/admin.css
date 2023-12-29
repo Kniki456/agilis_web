@@ -17,41 +17,12 @@
     margin-left: 30%;
 }
 
-.cim2{
-    margin-top: 6%;
-    font-family: 'Megrim', sans-serif;
-    font-weight: bolder;
-    text-align: center;
-    color: #ffffff;
-    font-size: 80px;
-    text-shadow: 2px 2px 2px #000000;
-}
-
-.logo{
-    margin-left: 10%;
-    border-radius: 50%;
-    max-width: 15%;
-    height: auto;
-    margin-top: 10px;
-}
-
-@media screen and (max-width: 800px) {
-    .logo{
-        max-width: 22%;
-    }
-}
-@media screen and (max-width: 500px) {
-    .logo{
-        max-width: 42%;
-    }
-}
-
 .highscores{
     font-family: 'Livvic', sans-serif;
     text-transform: unset;
 }
 
-main { /* css-bol ne felejtsd el kitorolni*/
+main {
     max-width: 90%;
     margin: 20px auto;
     padding: 20px;
@@ -62,6 +33,25 @@ main { /* css-bol ne felejtsd el kitorolni*/
     flex-direction: column;
     gap: 1em;
     width: fit-content;
+}
+.logo{
+    margin-left: 10%;
+    border-radius: 50%;
+    max-width: 15%;
+    height: auto;
+    margin-top: 10px;
+}
+
+
+@media screen and (max-width: 800px) {
+    .logo{
+        max-width: 22%;
+    }
+}
+@media screen and (max-width: 550px) {
+    .logo{
+        max-width: 42%;
+    }
 }
 
 .ind{
@@ -140,6 +130,7 @@ input, textarea,select{
     }
     .cim{
         font-size: 40px;
+        text-align: center;
     }
 }
 

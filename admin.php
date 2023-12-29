@@ -38,7 +38,7 @@ include "functions.php";
         <div class="section operation active" data-value="open-pets-container" id="open-pets-container">
             <ul class="rows2">
                 <?php
-                getPetsRow();
+                getScoresRow();
                 ?>
             </ul>
         </div>

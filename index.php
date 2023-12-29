@@ -17,8 +17,6 @@ if (!isset($_SESSION)) {
     <link rel="stylesheet" type="text/css" href="css/css.css">
     <link rel="stylesheet" type="text/css" href="css/nav.css">
     <link rel="stylesheet" type="text/css" href="css/admin.css">
-    <link rel="stylesheet" href="css/tailwind.css">
-    <link rel="stylesheet" href="css/tooplate-antique-cafe.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -46,7 +44,6 @@ if (!isset($_SESSION)) {
 
 </header>
 <main class="ind">
-    <?php response(); ?>
     <h3 class="about" id="about">About the game</h3>
     <div class="container1">
         <div class="section">
@@ -85,7 +82,8 @@ if (!isset($_SESSION)) {
                 </p>
             </div>
             <div class="flex-1 rounded-xl p-12 pb-14 m-5 bg-black bg-opacity-50 tm-item-container">
-                <form action="" method="POST" class="text-lg">
+                <form action="https://api.web3forms.com/submit" method="POST" class="text-lg">
+                    <input type="hidden" name="access_key" value="54ced402-8d71-4f39-8b92-be7250abe155">
                     <input type="text" name="name" class="input w-full bg-black border-b bg-opacity-0 px-0 py-4 mb-4 tm-border-gold" placeholder=" Name" required="" />
                     <input type="email" name="email" class="input w-full bg-black border-b bg-opacity-0 px-0 py-4 mb-4 tm-border-gold" placeholder=" Email" required="" />
                     <textarea rows="6" name="message" class="input w-full bg-black border-b bg-opacity-0 px-0 py-4 mb-4 tm-border-gold" placeholder=" Message..." required=""></textarea>
